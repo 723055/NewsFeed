@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create news</title>
+    <script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="js/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="js/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="js/css/style.css" rel="stylesheet">
+</head>
+
+<main class="mt-5 pt-5">
+    <div class="container">
+        <section class="mt-4">
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <div class="card mb-4 wow fadeIn">
+                        <img src="https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="img-fluid">
+                    </div>
+
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="topic">Topic</label>
+                            <input type="text" class="form-control" id="topic" placeholder="Enter topic">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="content" placeholder="Enter some text"></textarea>
+
+                        </div>
+
+                        <label for="category">Choose category</label>
+                        <select class="form-control" id="category"></select>
+
+                        <button type="button" class="btn button-success blue">Create</button>
+
+                    </form>
+
+                    <div class="card mb-4 wow fadeIn">
+                        <div class="card-header font-weight-bold">
+                            <span>
+                                Contact with autor
+                            </span>
+                            <span class="pull-right">
+                                <a href="mailto: lyaminans@yandex.ru ">
+                                    lyaminans@yandex.ru
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <strong class="blue-text">News feed</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mr-auto">
+                
+                    <li class="nav-item">
+                        <a href="create_news.html" class="nav-link">Create news</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="edit.html" class="nav-link">Edit news</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            console.log("ready!");
+            $.getJSON("/api/categories/all", function(result) {
+                console.log(result);
+                var select = $("#category");
+                for (var i = 0; i < result.length; i++) {
+                    var element = result[i];
+                    select.append($("<option></option>")
+                        .attr("value", element["id"])
+                        .text(element["name"]));
+                }
+            });
+        });
+
+    </script>
+    <script type="text/javascript" src="js/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/js/mdb.js"></script>
+
+</body>
+
+</html>
