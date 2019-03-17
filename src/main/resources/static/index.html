@@ -19,30 +19,12 @@
         <section class="mt-4">
             <div class="row">
                 <div class="col-md-8 mb-4">
-                    <div class="card mb-4 wow fadeIn">
-                        <img src="https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="img-fluid">
-                    </div>
-
+                    
                     <input type="text" class="form-control" id="search" placeholder="Search by topic">
 
 
                     <form role="form" id="allnews">
-                        <!--
-                        <div class="form-group">
-                            <label for="topic">Topic</label>
-                            <input type="text" class="form-control" id="topic" placeholder="Enter topic">
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" id="content" placeholder="Enter some text"></textarea>
-
-                        </div>
-
-                        <label for="category">Choose category</label>
-                        <select class="form-control" id="category"></select>
-
-                        <button type="button" class="btn button-success blue">Create</button>
--->
-
+   
                     </form>
 
                     <div class="card mb-4 wow fadeIn">
@@ -97,48 +79,22 @@
                 var select = $("#allnews");
                 for (var i = 0; i < result.length; i++) {
                     var element = result[i];
+                    console.log(element);
                     select.append($("<p></p>")
                         .attr("value", element["id"])
                         .text(element["nameTopic"])).append($("<p></p>")
                         .attr("value", element["id"])
                         .text(element["content"])).append($("<p></p>")
                         .attr("value", element["id"])
-                        .text(element["publicationDate"] + " " + element["category"]["id"]["name"]));
+                        .text(element["publicationDate"] + " " + element["category"]["name"]));
                 }
             });
 
-            $.getJSON("news/#nameTopic", function(result1) {
-                console.log(result1);
-            var search = $("search");
-            for(var l=0; l<result1.length; l++){
-                var element1 = result1[l];
-                search.append($("<p></p>")
-                        .attr("value", element1["id"])
-                        .text(element1["nameTopic"])).append($("<p></p>")
-                        .attr("value", element1["id"])
-                        .text(element1["content"])).append($("<p></p>")
-                        .attr("value", element1["id"])
-                        .text(element1["publicationDate"]));
-            }
-
-            });
+            
+            
+            
+            
         });
-
-        //        var article = {
-        // "id": 1,
-        // "topic": "Rapist killed himself",
-        // "content": "Blaa",
-        // "categories": [
-        //  {
-        //   "id": 1,
-        //   "name": "bla"
-        //  },
-        //  {
-        //   "id": 1,
-        //   "name": "bla2"
-        //  },
-        // ]
-        //}
 
     </script>
     <script type="text/javascript" src="js/js/popper.min.js"></script>
