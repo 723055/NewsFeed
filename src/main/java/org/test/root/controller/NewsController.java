@@ -36,9 +36,12 @@ public class NewsController {
     private UserRepository userRepository;
 
 
-    @PostMapping("news/{nameTopic}/{content}")
-    public News createNews(@PathVariable String nameTopic, @PathVariable String content, Category category, String publicationDate) {
-        News news = managingService.createNews(nameTopic, content, publicationDate, category);
+    @PostMapping("news/{nameTopic}/{content}/{category}")
+    public News createNews(@PathVariable String nameTopic, @PathVariable String content, @PathVariable Category category) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        String date = LocalDateTime.now().format(formatter);
+
+        News news = managingService.createNews(nameTopic, content, category, date);
         newsCache.saveNews(news);
         return news;
     }
@@ -55,9 +58,9 @@ public class NewsController {
         return newsCache.getAllNews();
     }
 
-    @GetMapping("news/new/{id}/{nameTopic}/{content}/{publicationDate}")
+    @GetMapping("news/new/{id}/{nameTopic}/{content}")
     public News changeNews(@PathVariable Long id, @PathVariable String nameTopic, @PathVariable String content,
-                           @PathVariable String publicationDate) {
+                            String publicationDate) {
         News news = newsCache.getNewsById(id);
         news.setNameTopic(nameTopic);
         news.setContent(content);

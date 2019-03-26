@@ -14,7 +14,6 @@ public class ManagingService {
     @Autowired
     private CategoryCache categoryCache;
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     public Category createCategory(String name) {
         Category category = new Category();
@@ -22,12 +21,12 @@ public class ManagingService {
         return category;
     }
 
-    public News createNews(String nameTopic, String content, String publicationDate, Category category) {
+    public News createNews(String nameTopic, String content, Category category, String publicationDate) {
         News news = new News();
         news.setNameTopic(nameTopic);
         news.setContent(content);
         news.setCategory(category);
-        news.setPublicationDate(LocalDate.parse(publicationDate, formatter).toString());
+        news.setPublicationDate(publicationDate);
         return news;
     }
 }
