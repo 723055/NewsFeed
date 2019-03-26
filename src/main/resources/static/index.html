@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Create news</title>
     <script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
     <!-- Bootstrap core CSS -->
     <link href="js/css/bootstrap.min.css" rel="stylesheet">
@@ -19,12 +20,16 @@
         <section class="mt-4">
             <div class="row">
                 <div class="col-md-8 mb-4">
-                    
-                    <input type="text" class="form-control" id="search" placeholder="Search by topic">
+
+                    <input type="text" class="form-control" id="news" placeholder="Search by topic">
+                    <button id="searchByTopic">search</button>
+                    <div id="getResultDiv">
+                        <ul class="list-group"></ul>
+                    </div>
 
 
                     <form role="form" id="allnews">
-   
+
                     </form>
 
                     <div class="card mb-4 wow fadeIn">
@@ -70,33 +75,6 @@
         </div>
     </nav>
 
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            console.log("ready!");
-            $.getJSON("/api/news/newsList", function(result) {
-                console.log(result);
-                var select = $("#allnews");
-                for (var i = 0; i < result.length; i++) {
-                    var element = result[i];
-                    console.log(element);
-                    select.append($("<p></p>")
-                        .attr("value", element["id"])
-                        .text(element["nameTopic"])).append($("<p></p>")
-                        .attr("value", element["id"])
-                        .text(element["content"])).append($("<p></p>")
-                        .attr("value", element["id"])
-                        .text(element["publicationDate"] + " " + element["category"]["name"]));
-                }
-            });
-
-            
-            
-            
-            
-        });
-
-    </script>
     <script type="text/javascript" src="js/js/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/js/bootstrap.min.js"></script>

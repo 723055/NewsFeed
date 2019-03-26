@@ -22,10 +22,11 @@ public class ManagingService {
         return category;
     }
 
-    public News createNews(String nameTopic, String content, String publicationDate) {
+    public News createNews(String nameTopic, String content, String publicationDate, Category category) {
         News news = new News();
         news.setNameTopic(nameTopic);
         news.setContent(content);
+        news.setCategory(category);
         news.setPublicationDate(LocalDate.parse(publicationDate, formatter).toString());
         return news;
     }

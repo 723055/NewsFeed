@@ -36,9 +36,9 @@ public class NewsController {
     private UserRepository userRepository;
 
 
-    @PostMapping("news/{nameTopic}/{content}/{publicationDate}")
-    public News createNews(@PathVariable String nameTopic, @PathVariable String content, @PathVariable String publicationDate) {
-        News news = managingService.createNews(nameTopic, content, publicationDate);
+    @PostMapping("news/{nameTopic}/{content}")
+    public News createNews(@PathVariable String nameTopic, @PathVariable String content, Category category, String publicationDate) {
+        News news = managingService.createNews(nameTopic, content, publicationDate, category);
         newsCache.saveNews(news);
         return news;
     }

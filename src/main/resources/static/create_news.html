@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Create news</title>
     <script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/create_news.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
     <!-- Bootstrap core CSS -->
     <link href="js/css/bootstrap.min.css" rel="stylesheet">
@@ -19,11 +20,11 @@
         <section class="mt-4">
             <div class="row">
                 <div class="col-md-8 mb-4">
-                    
-                    <form role="form">
+
+                    <form role="form" id="setNews">
                         <div class="form-group">
                             <label for="topic">Topic</label>
-                            <input type="text" class="form-control" id="topic" placeholder="Enter topic">
+                            <input type="text" class="form-control" id="nameTopic" placeholder="Enter topic">
                         </div>
                         <div class="form-group">
                             <textarea class="form-control" id="content" placeholder="Enter some text"></textarea>
@@ -33,7 +34,7 @@
                         <label for="category">Choose category</label>
                         <select class="form-control" id="category"></select>
 
-                        <button type="button" class="btn button-success blue">Create</button>
+                        <button type="submit" class="btn button-success blue">Create</button>
 
                     </form>
 
@@ -67,7 +68,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav mr-auto">
-                
+
                     <li class="nav-item active">
                         <a href="create_news.html" class="nav-link">Create news</a>
                     </li>
@@ -81,22 +82,6 @@
     </nav>
 
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            console.log("ready!");
-            $.getJSON("/api/categories/all", function(result) {
-                console.log(result);
-                var select = $("#category");
-                for (var i = 0; i < result.length; i++) {
-                    var element = result[i];
-                    select.append($("<option></option>")
-                        .attr("value", element["id"])
-                        .text(element["name"]));
-                }
-            });
-        });
-
-    </script>
     <script type="text/javascript" src="js/js/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/js/bootstrap.min.js"></script>
