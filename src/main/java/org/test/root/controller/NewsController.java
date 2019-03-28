@@ -69,8 +69,8 @@ public class NewsController {
         return news;
     }
 
-    @GetMapping("news/newsList/topic/{nameTopic}")
-    public List<News> findNewsByNameTopic(@PathVariable String nameTopic) {
+    @GetMapping("news/newsList/topic/")
+    public List<News> findNewsByNameTopic(@RequestParam("nameTopic") String nameTopic) {
         List<News> news = newsCache.findByNameTopicIgnoreCaseContaining(nameTopic);
         return news;
     }
@@ -81,8 +81,8 @@ public class NewsController {
         return news;
     }
 
-    @GetMapping("news/newsList/content/{content}")
-    public List<News> findNewsByNameContent(@PathVariable String content) {
+    @GetMapping("news/newsList/content/")
+    public List<News> findNewsByNameContent(@RequestParam("content") String content) {
         List<News> news = newsCache.findByContent(content);
         return news;
     }

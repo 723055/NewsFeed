@@ -32,7 +32,7 @@
             $("#btnSearch").click(function (event) {
                 event.preventDefault();
                 ajaxGet();
-                ajaxGetContext();
+              //  ajaxGetContext();
             });
 
             function ajaxGet() {
@@ -45,7 +45,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "api/news/newsList/topic/" + formData.nameTopic,
+                    url: "api/news/newsList/topic/?nameTopic=" + formData.nameTopic,
                     success: function (result) {
                         if (Object.keys(result).length > 0) {
                             var select = $("#allnews");
@@ -65,6 +65,7 @@
                             }
                         }
                     }
+                    ajaxGetContext();
                 });
             }
 
@@ -76,7 +77,7 @@
                 }
                 $.ajax({
                     type: "GET",
-                    url: "api/news/newsList/content/" + formData.content,
+                    url: "api/news/newsList/content/?content=" + formData.content,
                     success: function (result) {
                         if (Object.keys(result).length > 0) {
                             var select = $("#allnews");
@@ -98,5 +99,5 @@
                         }
                     }
                 });
-            }
+           // }
         });
