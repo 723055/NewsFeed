@@ -60,7 +60,7 @@ public class NewsController {
 
     @GetMapping("news/new/{id}/{nameTopic}/{content}")
     public News changeNews(@PathVariable Long id, @PathVariable String nameTopic, @PathVariable String content,
-                            String publicationDate) {
+                           String publicationDate) {
         News news = newsCache.getNewsById(id);
         news.setNameTopic(nameTopic);
         news.setContent(content);
@@ -69,7 +69,7 @@ public class NewsController {
         return news;
     }
 
-    @GetMapping("news/{nameTopic}")
+    @GetMapping("news/newsList/{nameTopic}")
     public List<News> findNewsByNameTopic(@PathVariable String nameTopic) {
         List<News> news = newsCache.findByNameTopicIgnoreCaseContaining(nameTopic);
         return news;
@@ -90,21 +90,20 @@ public class NewsController {
     @PostMapping("news/create")
     public String createTestData() {
         List<Category> categories = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            Category category = new Category();
-            category.setName("Category-" + i);
-            categoryCache.saveCategory(category);
-            categories.add(category);
 
+            for (int i = 0; i < 5; i++) {
+                Category category = new Category();
+                    category.setName("Category-" + i);
+                    categoryCache.saveCategory(category);
+                    categories.add(category);
+                for (int k = 0; k < 2; k++) {
+                Random random = new Random();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-            Random random = new Random();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
-            for (int k = 0; k < 5; k++) {
                 News news = new News();
-                news.setNameTopic("TOPIC " + k);
+                news.setNameTopic("TOPIC " + random.nextInt(1000000000));
                 news.setContent("Some text \n" + random.nextInt(100000000) + "\n"
-                        + "more some text" + random.nextInt(100000));
+                        + "more some text " + random.nextInt(100000));
                 String date = LocalDateTime.now().format(formatter);
                 news.setPublicationDate(date);
                 news.setCategory(categories.get(i));
